@@ -1,0 +1,1 @@
+docker上にRuby on Railsの環境を一発で作るスクリプト
