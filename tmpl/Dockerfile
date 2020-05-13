@@ -1,6 +1,4 @@
 FROM ruby:2.6.5-alpine3.9
-ARG APPNAME
-RUN echo "appname: $APPNAME"
 
 RUN apk update
 RUN apk upgrade
