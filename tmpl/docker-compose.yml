@@ -1,0 +1,28 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3316:3306'
+    volumes:
+      - ./db/mysql/volumes:/var/lib/mysql
+
+  web:
+    build: .
+    command: /bin/sh
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: "0.0.0.0"
+      RAILS_SERVE_STATIC_FILES: "1"
+      EDITOR: "vim"
+    volumes:
+      - ./apps:/apps
+    ports:
+      - "3000:3000"
+      - "3035:3035"
+    depends_on:
+      - db
+    tty: true
+    working_dir: /apps/
