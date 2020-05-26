@@ -34,3 +34,4 @@ RUN openssl rand -hex 64 > /home/devel/.secret_key_base
 RUN echo $'export SECRET_KEY_BASE=$(cat /home/devel/.secret_key_base)' \
   >> /home/devel/.bashrc
 
+COPY init/application_template/ /tmp/application_template/

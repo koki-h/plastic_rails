@@ -15,4 +15,4 @@ case "$OSTYPE" in
     ;;
 esac
 
-$RUN_ON_WEB_CMD rails new $APPNAME --database=mysql --skip-bundle --skip-webpack-install
+$RUN_ON_WEB_CMD rails new $APPNAME --database=mysql --skip-bundle --skip-webpack-install -m /tmp/application_template/template.rb
