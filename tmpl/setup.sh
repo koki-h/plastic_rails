@@ -1,5 +1,4 @@
 #!/bin/bash
-export APPNAME=$1
 set -eu
 #RUN_ON_WEB_CMD="docker-compose run --rm web"
 RUN_ON_WEB_CMD="docker-compose exec web"

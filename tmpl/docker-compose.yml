@@ -25,4 +25,4 @@ services:
     depends_on:
       - db
     tty: true
-    working_dir: /apps/$APPNAME
+    working_dir: /apps/
