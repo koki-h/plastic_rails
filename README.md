@@ -7,7 +7,7 @@ docker上にRuby on Railsの環境を一発で作るスクリプト
 以下の手順を実行すると http://localhost:3000 でrailsのテストページが表示できるようになる。
 
 - rails new済のDockerコンテナを作成する
-  - `./doker_gen.sh <APP_NAME>`
+  - `./plarails.sh <APP_NAME>`
 - コンテナのシェルにログインする
   -  `cd <APP_NAME>; docker-compose exec web bash; `
 - コンテナ上でRails serverを起動する
