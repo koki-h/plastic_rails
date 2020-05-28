@@ -1,9 +1,15 @@
 #!/bin/bash
 set -eu
-#RUN_ON_WEB_CMD="docker-compose run --rm web"
 RUN_ON_WEB_CMD="docker-compose exec web"
+#RUN_ON_WEB_CMD="docker-compose run --rm web"
+function docker_run {
+  cmd=$1
+  echo $cmd
+  $RUN_ON_WEB_CMD $cmd
+}
 docker-compose up -d
-$RUN_ON_WEB_CMD bundle install 
-$RUN_ON_WEB_CMD yarn install --check-files
-$RUN_ON_WEB_CMD rails webpacker:install
-$RUN_ON_WEB_CMD rails db:setup
+docker_run "bundle install "
+docker_run "yarn install --check-files"
+docker_run "yarn upgrade"
+docker_run "rails webpacker:install"
+docker_run "rails db:setup"
