@@ -6,6 +6,7 @@ docker上にRuby on Railsの環境を一発で作るスクリプト
 ## Requirements
 - Docker
 - Docker Compose
+- ruby
 
 ## 環境の作成
 以下の手順を実行すると http://localhost:3000 でrailsのテストページが表示できるようになる。
