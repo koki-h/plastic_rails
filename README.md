@@ -7,13 +7,14 @@ docker上にRuby on Railsの環境を一発で作るスクリプト
 - Docker
 - Docker Compose
 - ruby
-
+  - Thor (rubygems)
+    - `gem install thor` するなどして環境にインストールしておく。
 ## 環境の作成
 以下の手順を実行すると http://localhost:3000 でrailsのテストページが表示できるようになる。
 
 - rails new済のDockerコンテナを作成する
-  - `./plarails.rb <APP_NAME>`
-  - うまく動かない(`./build.sh: OSTYPE: parameter not set` というエラーが出る)場合は `export OSTYPE; ./plarails.rb <APP_NAME>`
+  - `./plarails.rb new <APP_NAME>`
+  - うまく動かない(`./build.sh: OSTYPE: parameter not set` というエラーが出る)場合は `export OSTYPE; ./plarails.rb new <APP_NAME>`
 - コンテナのシェルにログインする
   -  `cd <APP_NAME>; docker-compose exec web bash; `
 - コンテナ上でRails serverを起動する
