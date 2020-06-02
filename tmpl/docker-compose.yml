@@ -8,7 +8,7 @@ services:
     ports:
       - '3316:3306'
     volumes:
-      - ./db/mysql/volumes:/var/lib/mysql
+      - %DB_PATH%:/var/lib/mysql
 
   web:
     build: .
