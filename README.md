@@ -29,3 +29,21 @@ docker上にRuby on Railsの環境を一発で作るスクリプト
   -  `docker-compose down`
 - 削除したコンテナを再セットアップ
   -  `./setup.sh`
+## デバッグ
+### デバッグ環境（Vagrant）作成
+- あらかじめ、VirtualboxとVagrantをインストールしておく。
+- Vagrantfileをダウンロード
+```
+$ wget https://gist.github.com/koki-h/8a2990ac49f37124dc90523ef1e635ed 
+```
+- Virtualbox起動。最初からrequirementsが入ったVirtualboxができる
+```
+$ vagrant up 
+```
+- `vagrant ssh` で virtualboxにログインし、適当なディレクトリで `git clone https://github.com/koki-h/plastic_rails.git` する。
+
+### Vagrant環境での実行方法
+```
+$ export OSTYPE; ./plarails.rb new <APP_NAME> --db_path=<DB_PATH>
+```
+Plastic RailsをVirtualboxの共有ディレクトリにインストールした場合は --db-path オプションでDBファイルのパスを共有ディレクトリ以外に指定する。
