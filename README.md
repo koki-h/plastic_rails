@@ -29,7 +29,7 @@ docker上にRuby on Railsの環境を一発で作るスクリプト
   -  `docker-compose down`
 - 削除したコンテナを再セットアップ
   -  `./setup.sh`
-## デバッグ
+## Plastic Rails自体の開発・デバッグ
 ### デバッグ環境（Vagrant）作成
 - あらかじめ、VirtualboxとVagrantをインストールしておく。
 - Vagrantfileをダウンロード
