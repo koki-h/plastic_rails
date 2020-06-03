@@ -46,4 +46,4 @@ $ vagrant up
 ```
 $ export OSTYPE; ./plarails.rb new <APP_NAME> --db_path=<DB_PATH>
 ```
-Plastic RailsをVirtualboxの共有ディレクトリにインストールした場合は --db-path オプションでDBファイルのパスを共有ディレクトリ以外に指定する。
+Plastic RailsをVirtualboxの共有ディレクトリにインストールした場合は --db-path オプションでDBファイルのパスを共有ディレクトリ以外に指定する。（そうしないとパーミッションの関係でMySqlサーバが起動しない）
