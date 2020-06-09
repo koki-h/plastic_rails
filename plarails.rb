@@ -25,6 +25,11 @@ class PlaRails < Thor
     system("./setup.sh")
   end
 
+  desc "login", "log in Rails container related to current directory."
+  def login
+    execute("docker-compose exec web bash")
+  end
+
   private
 
   def execute(cmd)
