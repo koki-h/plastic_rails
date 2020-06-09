@@ -9,12 +9,13 @@ docker上にRuby on Railsの環境を一発で作るスクリプト
 - ruby
   - Thor (rubygems)
     - `gem install thor` するなどして環境にインストールしておく。
+- `plarails.rb` にPATHが通った状態にしておく。
+
 ## 環境の作成
 以下の手順を実行すると http://localhost:3000 でrailsのテストページが表示できるようになる。
 
 - rails new済のDockerコンテナを作成する
-  - `./plarails.rb new <APP_NAME>`
-  - うまく動かない(`./build.sh: OSTYPE: parameter not set` というエラーが出る)場合は `export OSTYPE; ./plarails.rb new <APP_NAME>`
+  - `plarails.rb new <APP_NAME>`
 - コンテナのシェルにログインする
   -  `cd <APP_NAME>; docker-compose exec web bash; `
 - コンテナ上でRails serverを起動する
@@ -44,6 +45,6 @@ $ vagrant up
 
 ### Vagrant環境での実行方法
 ```
-$ export OSTYPE; ./plarails.rb new <APP_NAME> --db_path=<DB_PATH>
+$ plarails.rb new <APP_NAME> --db_path=<DB_PATH>
 ```
 Plastic RailsをVirtualboxの共有ディレクトリにインストールした場合は --db-path オプションでDBファイルのパスを共有ディレクトリ以外に指定する。（そうしないとパーミッションの関係でMySqlサーバが起動しない）
