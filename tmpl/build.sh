@@ -1,13 +1,15 @@
+#!/bin/bash
 set -eu
 APPNAME=$1
 BUILD_CMD="docker-compose build --no-cache --build-arg APPNAME=$APPNAME"
 RUN_ON_WEB_CMD="docker-compose run --rm web"
+OSTYPE=$(uname)
 
 case "$OSTYPE" in
-  darwin*)
+  Darwin*)
     $BUILD_CMD web
     ;;
-  linux*)
+  Linux*)
     $BUILD_CMD --build-arg UID=$(id -u) --build-arg GID=$(id -g) web
     ;;
   *)
