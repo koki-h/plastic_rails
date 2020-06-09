@@ -5,10 +5,11 @@ require "thor"
 require "lib/fileutils.rb"
 
 class PlaRails < Thor
+  TMPL_DIR=File.dirname(__FILE__)
   desc "new APPNAME", "create a Rails application skelton with Docker container."
   option :db_path, :default => "./db/mysql/volumes"
   def new(appname)
-    execute("cp -a tmpl #{appname}")
+    execute("cp -a #{TMPL_DIR}/tmpl #{appname}")
     Dir.chdir(appname)
 
     # DBのファイルパスを設定する
