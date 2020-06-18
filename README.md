@@ -1,7 +1,11 @@
 # Plastic Rails
+[![Gem Version](https://badge.fury.io/rb/plastic_rails.svg)](https://badge.fury.io/rb/plastic_rails)
+
+
 docker上にRuby on Railsの環境を一発で作るスクリプト
 
 プラレールのように自分用のレールを引こう
+
 
 ## Requirements
 - Docker
