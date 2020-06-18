@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 
 require "plastic_rails"
+PlasticRails::PlaRails.start(ARGV)
