@@ -20,7 +20,7 @@ gem install plastic_rails
 - rails new済のDockerコンテナを作成する
   - `plastic_rails new <APP_NAME>`
 - コンテナのシェルにログインする
-  -  `cd <APP_NAME>; docker-compose exec web bash; `
+  -  `cd <APP_NAME>; plastic_rails login; `
 - コンテナ上でRails serverを起動する
   - `rails s -b 0.0.0.0`
 
