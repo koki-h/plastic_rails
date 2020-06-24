@@ -38,6 +38,17 @@ gem install plastic_rails
 - 削除したコンテナを再セットアップ
   -  `./setup.sh`
 
+## カスタマイズ
+DockerfileやRailsのテンプレートを修正することによって、作成する環境をカスタマイズできる。DBをデフォルトのMySQLから別のものに変更することなどが可能。
+
+- デフォルトのテンプレートをコピー
+  - `plastic_rails copy_template <NEW_TEMPLATE>`
+  - <NEW_TEMPLATE> に デフォルトのテンプレート（DockerfileやRailsのアプリケーションテンプレート）が入ったディレクトリがコピーされる。
+- テンプレートを修正する
+- 修正したテンプレートを使用して環境を作成する
+  - `plastic_rails new <APP_NAME> --template=<NEW_TEMPLATE>` 
+
+
 ## Plastic Rails自体の開発・デバッグ
 ### デバッグ環境（Vagrant）作成
 - あらかじめ、VirtualboxとVagrantをインストールしておく。
