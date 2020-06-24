@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    plastic_rails (0.1.2)
+      thor (~> 1.0)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    rake (13.0.1)
+    thor (1.0.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 2.1)
+  plastic_rails!
+  rake (~> 13.0)
+
+BUNDLED WITH
+   2.1.4
