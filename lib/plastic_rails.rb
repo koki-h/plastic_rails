@@ -6,12 +6,12 @@ module PlasticRails
   class Error < StandardError; end
 
   class PlaRails < Thor
-    TMPL_DIR=File.dirname(__FILE__)
-    p TMPL_DIR
-    desc "new APPNAME", "create a Rails application skelton with Docker container."
+    DEFAULT_TEMPLATE_DIR = File.join(File.dirname(__FILE__) , "tmpl")
+    desc "new APPNAME", "Create a Rails application skelton with Docker container."
     option :db_path, :default => "./db/mysql/volumes"
+    option :template, :default => DEFAULT_TEMPLATE_DIR
     def new(appname)
-      execute("cp -a #{TMPL_DIR}/tmpl #{appname}")
+      execute("cp -a #{options[:template]} #{appname}")
       Dir.chdir(appname)
 
       # DBのファイルパスを設定する
@@ -27,9 +27,15 @@ module PlasticRails
       system("./setup.sh")
     end
 
-    desc "login", "log in Rails container related to current directory."
+    desc "login", "Log in Rails container related to current directory."
     def login
       execute("docker-compose exec web bash")
+    end
+
+
+    desc "copy_template", "Copy the default template to any dir. (To use in `new` command with `--template` option.)"
+    def copy_template(dest_dir)
+      execute("cp -a #{DEFAULT_TEMPLATE_DIR} #{dest_dir}")
     end
 
     private
