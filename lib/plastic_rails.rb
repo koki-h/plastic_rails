@@ -39,6 +39,20 @@ module PlasticRails
       execute("docker-compose exec web bash")
     end
 
+    desc "up", "Start up Rails container related to current directory."
+    def up
+      execute("docker-compose up -d")
+    end
+
+    desc "stop", "Stop Rails container related to current directory."
+    def stop
+      execute("docker-compose stop")
+    end
+
+    desc "down", "Stop and remove Rails container related to current directory."
+    def down
+      execute("docker-compose down")
+    end
 
     desc "copy_template", "Copy the default template to any dir. (To use in `new` command with `--template` option.)"
     def copy_template(dest_dir)
