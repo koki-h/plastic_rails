@@ -29,12 +29,14 @@ gem install plastic_rails
   - `rails s -b 0.0.0.0`
 
 ## 環境の操作
-環境を作成した後は以下のコマンドで環境を操作する。
+環境を作成した後は以下のコマンドで環境を操作する。（<APP＿NAME>ディレクトリで実行する）
 
-- コンテナ停止（<APP＿NAME>ディレクトリで）
-  -  `docker-compose stop`
-- コンテナ削除（<APP＿NAME>ディレクトリで）
-  -  `docker-compose down`
+- コンテナ停止
+  -  `plastic_rails stop`
+- コンテナ削除
+  -  `plastic_rails down`
+- コンテナ起動
+  -  `plastic_rails up`
 - 削除したコンテナを再セットアップ
   -  `./setup.sh`
 
