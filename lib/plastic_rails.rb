@@ -1,12 +1,19 @@
 require "thor"
 require "plastic_rails/version"
 require "plastic_rails/fileutils"
+  THOR_SILENCE_DEPRECATION = true
 
 module PlasticRails
   class Error < StandardError; end
 
   class PlaRails < Thor
     DEFAULT_TEMPLATE_DIR = File.join(File.dirname(__FILE__) , "tmpl")
+
+    def self.exit_on_failure?
+      # コマンドが失敗したときに終了ステータス１を返すようにする設定
+      true
+    end
+
     desc "new APPNAME", "Create a Rails application skelton with Docker container."
     option :db_path, :default => "./db/mysql/volumes"
     option :template, :default => DEFAULT_TEMPLATE_DIR
