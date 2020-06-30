@@ -14,7 +14,7 @@ module PlasticRails
       true
     end
 
-    desc "new APPNAME", "Create a Rails application skelton with Docker container."
+    desc "new [APPNAME]", "Create a Rails application skelton with Docker container."
     option :db_path, :default => "./db/mysql/volumes"
     option :template, :default => DEFAULT_TEMPLATE_DIR
     def new(appname)
@@ -54,7 +54,7 @@ module PlasticRails
       execute("docker-compose down")
     end
 
-    desc "copy_template", "Copy the default template to any dir. (To use in `new` command with `--template` option.)"
+    desc "copy_template [DEST_DIR]", "Copy the default template to any dir. (To use in `new` command with `--template` option.)"
     def copy_template(dest_dir)
       execute("cp -a #{DEFAULT_TEMPLATE_DIR} #{dest_dir}")
     end
