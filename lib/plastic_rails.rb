@@ -7,6 +7,7 @@ module PlasticRails
   class Error < StandardError; end
 
   class PlaRails < Thor
+    include Thor::Actions
     DEFAULT_TEMPLATE_DIR = File.join(File.dirname(__FILE__) , "tmpl")
 
     def self.exit_on_failure?
@@ -18,17 +19,17 @@ module PlasticRails
     option :db_path, :default => "./db/mysql/volumes"
     option :template, :default => DEFAULT_TEMPLATE_DIR
     def new(appname)
-      execute("cp -a #{options[:template]} #{appname}")
+      run("cp -a #{options[:template]} #{appname}")
       Dir.chdir(appname)
 
       # DBのファイルパスを設定する
-      FileUtils.sed("docker-compose.yml",/%DB_PATH%/,options[:db_path]) 
+      FileUtils.sed("docker-compose.yml", /%DB_PATH%/, options[:db_path]) 
 
       # Dockerイメージビルド＆rails new (working_dirは `/apps`)
-      execute("./build.sh #{appname}")
+      run("./build.sh #{appname}")
 
       # working_dirをrailsアプリのディレクトリに変更する
-      FileUtils.sed("docker-compose.yml",/(working_dir: \/apps\/)/,'\1' + appname) 
+      FileUtils.sed("docker-compose.yml", /(working_dir: \/apps\/)/, '\1' + appname) 
 
       # Railsアプリの設定（`bundle install`, `rails db:setup` など）
       system("./setup.sh")
@@ -36,34 +37,27 @@ module PlasticRails
 
     desc "login", "Log in Rails container related to current directory."
     def login
-      execute("docker-compose exec web bash")
+      run("docker-compose exec web bash")
     end
 
     desc "up", "Start up Rails container related to current directory."
     def up
-      execute("docker-compose up -d")
+      run("docker-compose up -d")
     end
 
     desc "stop", "Stop Rails container related to current directory."
     def stop
-      execute("docker-compose stop")
+      run("docker-compose stop")
     end
 
     desc "down", "Stop and remove Rails container related to current directory."
     def down
-      execute("docker-compose down")
+      run("docker-compose down")
     end
 
     desc "copy_template [DEST_DIR]", "Copy the default template to any dir. (To use in `new` command with `--template` option.)"
     def copy_template(dest_dir)
-      execute("cp -a #{DEFAULT_TEMPLATE_DIR} #{dest_dir}")
-    end
-
-    private
-
-    def execute(cmd)
-      puts cmd
-      system(cmd)
+      run("cp -a #{DEFAULT_TEMPLATE_DIR} #{dest_dir}")
     end
   end
 end
