@@ -9,6 +9,10 @@ module PlasticRails
     include Thor::Actions
     DEFAULT_TEMPLATE_DIR = File.join(File.dirname(__FILE__) , "tmpl")
 
+    def self.source_root
+      Dir.pwd
+    end
+
     def self.exit_on_failure?
       # コマンドが失敗したときに終了ステータス１を返すようにする設定
       true
@@ -18,7 +22,7 @@ module PlasticRails
     option :db_path, :default => "./db/mysql/volumes"
     option :template, :default => DEFAULT_TEMPLATE_DIR
     def new(appname)
-      run("cp -a #{options[:template]} #{appname}")
+      directory(options[:template], appname, :mode => :preserve)
       inside(appname) do
         # DBのファイルパスを設定する
         gsub_file("docker-compose.yml", /%DB_PATH%/, options[:db_path]) 
@@ -56,7 +60,7 @@ module PlasticRails
 
     desc "copy_template [DEST_DIR]", "Copy the default template to any dir. (To use in `new` command with `--template` option.)"
     def copy_template(dest_dir)
-      run("cp -a #{DEFAULT_TEMPLATE_DIR} #{dest_dir}")
+      directory(DEFAULT_TEMPLATE_DIR, dest_dir, :mode => :preserve)
     end
   end
 end
