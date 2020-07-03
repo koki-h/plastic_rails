@@ -1,7 +1,6 @@
 require "thor"
 require "plastic_rails/version"
-require "plastic_rails/fileutils"
-  THOR_SILENCE_DEPRECATION = true
+THOR_SILENCE_DEPRECATION = true
 
 module PlasticRails
   class Error < StandardError; end
@@ -20,19 +19,19 @@ module PlasticRails
     option :template, :default => DEFAULT_TEMPLATE_DIR
     def new(appname)
       run("cp -a #{options[:template]} #{appname}")
-      Dir.chdir(appname)
+      inside(appname) do
+        # DBのファイルパスを設定する
+        gsub_file("docker-compose.yml", /%DB_PATH%/, options[:db_path]) 
 
-      # DBのファイルパスを設定する
-      FileUtils.sed("docker-compose.yml", /%DB_PATH%/, options[:db_path]) 
+        # Dockerイメージビルド＆rails new (working_dirは `/apps`)
+        run("./build.sh #{appname}")
 
-      # Dockerイメージビルド＆rails new (working_dirは `/apps`)
-      run("./build.sh #{appname}")
+        # working_dirをrailsアプリのディレクトリに変更する
+        gsub_file("docker-compose.yml", /(working_dir: \/apps\/)/, '\1' + appname) 
 
-      # working_dirをrailsアプリのディレクトリに変更する
-      FileUtils.sed("docker-compose.yml", /(working_dir: \/apps\/)/, '\1' + appname) 
-
-      # Railsアプリの設定（`bundle install`, `rails db:setup` など）
-      run("./setup.sh")
+        # Railsアプリの設定（`bundle install`, `rails db:setup` など）
+        run("./setup.sh")
+      end
     end
 
     desc "login", "Log in Rails container related to current directory."
