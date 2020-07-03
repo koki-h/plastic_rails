@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 APPNAME=$1
-BUILD_CMD="docker-compose build --no-cache --build-arg APPNAME=$APPNAME"
+BUILD_CMD="docker-compose build --no-cache"
 RUN_ON_WEB_CMD="docker-compose run --rm web"
 OSTYPE=$(uname)
 
