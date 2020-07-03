@@ -32,7 +32,7 @@ module PlasticRails
       FileUtils.sed("docker-compose.yml", /(working_dir: \/apps\/)/, '\1' + appname) 
 
       # Railsアプリの設定（`bundle install`, `rails db:setup` など）
-      system("./setup.sh")
+      run("./setup.sh")
     end
 
     desc "login", "Log in Rails container related to current directory."
