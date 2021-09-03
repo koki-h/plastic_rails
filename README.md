@@ -22,6 +22,10 @@ gem install plastic_rails
 
 - rails new済のDockerコンテナを作成する
   - `plastic_rails new <APP_NAME>`
+    - 以下のようなメッセージが出るが、正常なので次に進む。
+      ```
+      (/apps/<APP_NAME>/db/schema.rb doesn't exist yet. Run `rails db:migrate` to create it, then try again. If you do not intend to use a database, you should instead alter /apps/<APP_NAME>/config/application.rb to limit the frameworks that will be loaded.)
+      ```
 - コンテナのシェルにログインする
   -  `cd <APP_NAME>; plastic_rails login; `
 - コンテナ上でRails serverを起動する
