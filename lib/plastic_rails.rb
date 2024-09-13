@@ -8,6 +8,7 @@ module PlasticRails
   class PlaRails < Thor
     include Thor::Actions
     DEFAULT_TEMPLATE_DIR = File.join(File.dirname(__FILE__) , "tmpl")
+    DOCKER_COMPOSE_CMD = 'docker compose'
 
     def self.source_root
       Dir.pwd
@@ -40,22 +41,22 @@ module PlasticRails
 
     desc "login", "Log in Rails container related to current directory."
     def login
-      run("docker-compose exec web bash")
+      run("#{DOCKER_COMPOSE_CMD} exec web bash")
     end
 
     desc "up", "Start up Rails container related to current directory."
     def up
-      run("docker-compose up -d")
+      run("#{DOCKER_COMPOSE_CMD} up -d")
     end
 
     desc "stop", "Stop Rails container related to current directory."
     def stop
-      run("docker-compose stop")
+      run("#{DOCKER_COMPOSE_CMD} stop")
     end
 
     desc "down", "Stop and remove Rails container related to current directory."
     def down
-      run("docker-compose down")
+      run("#{DOCKER_COMPOSE_CMD} down")
     end
 
     desc "copy_template [DEST_DIR]", "Copy the default template to any dir. (To use in `new` command with `--template` option.)"
