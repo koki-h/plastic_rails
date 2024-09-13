@@ -10,7 +10,7 @@ docker上にRuby on Railsの環境を一発で作るスクリプト
 ## Requirements
 - Docker
 - ruby
-- [docker-compose](https://docs.docker.jp/v1.10/compose/install.html)
+
 ## install 
 
 ```
